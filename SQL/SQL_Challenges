@@ -1,0 +1,149 @@
+-- Note Hacker rank doesn't use CTEs (Common Table Expressions), so we need to use derived tables
+-- Example we can use With ..... AS(.......)
+
+/* Query a list of CITY names from STATION for cities that have an even ID number. 
+Print the results in any order, but exclude duplicates from the answer. */
+SELECT DISTINCT CITY FROM STATION
+WHERE MOD(ID, 2) = 0;
+
+/* Find the difference between the total number of CITY entries in the table and
+the number of distinct CITY entries in the table. */
+SELECT COUNT(CITY) - COUNT(DISTINCT CITY) FROM STATION;
+-- or
+SELECT (COUNT(CITY) - COUNT(DISTINCT CITY)) As Diff FROM STATION;
+
+/* Query the two cities in STATION with the shortest and longest CITY names, as well as
+their respective lengths (i.e.: number of characters in the name). If there is more than
+ one smallest or largest city, choose the one that comes first when ordered alphabetically.*/
+-- 2 Seperate Queries
+SELECT CITY, LENGTH(CITY) FROM STATION
+ORDER BY LENGTH(CITY), CITY LIMIT 1;
+
+SELECT CITY, LENGTH(CITY) FROM STATION
+ORDER BY LENGTH(CITY) DESC, CITY LIMIT 1;
+
+-- or -- Single Query using Union
+(SELECT CITY, LENGTH(CITY) FROM STATION
+ORDER BY LENGTH(CITY), CITY LIMIT 1)
+UNION
+(SELECT CITY, LENGTH(CITY) FROM STATION
+ORDER BY LENGTH(CITY) DESC, CITY LIMIT 1);
+
+/* Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. 
+Your result cannot contain duplicates. */
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '^[AEIOUaeiou]';
+
+/* Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. 
+Your result cannot contain duplicates. */
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '[AEIOUaeiou]$';
+
+/* Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) 
+as both their first and last characters. Your result cannot contain duplicates. */
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '^[AEIOUaeiou].*[AEIOUaeiou]$';
+
+/* Query the list of CITY names from STATION that do not start with vowels. 
+Your result cannot contain duplicates. */
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '^[^AEIOUaeiou]';
+-- the ^ inside the brackets negates the match
+
+/* Query the list of CITY names from STATION that do not end with vowels. 
+Your result cannot contain duplicates. */
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '[^AEIOUaeiou]$';
+
+/* Query the list of CITY names from STATION that either do not start with vowels or 
+do not end with vowels. Your result cannot contain duplicates. */
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '^[^AEIOUaeiou]' OR CITY REGEXP '[^AEIOUaeiou]$';
+-- Note the answer can include city names with no vowels at both start and end
+
+/* Query the list of CITY names from STATION that do not start with vowels and 
+do not end with vowels. Your result cannot contain duplicates. */
+SELECT DISTINCT CITY FROM STATION
+WHERE CITY REGEXP '^[^AEIOUaeiou]' AND CITY REGEXP '[^AEIOUaeiou]$';
+
+/* Query the Name of any student in STUDENTS who scored higher than  Marks. 
+Order your output by the last three characters of each name. If two or more students both 
+have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary 
+sort them by ascending ID. */
+SELECT Name FROM STUDENTS
+WHERE Marks > 75
+ORDER BY SUBSTRING(Name, -3), ID;
+
+/* Write a query that prints a list of employee names (i.e.: the name attribute) 
+from the Employee table in alphabetical order. */
+SELECT name FROM Employee
+ORDER BY name;
+
+/* Write a query that prints a list of employee names (i.e.: the name attribute) for 
+employees in Employee having a salary greater than 2000 per month who have been employees 
+for less than 10 months. Sort your result by ascending employee_id. */
+SELECT name FROM Employee
+WHERE salary > 2000 AND months < 10
+ORDER BY employee_id;
+
+/* Consider P1(a, c) and P2(b, d) to be two points on a 2D plane where (a, b) are the respective minimum and 
+maximum values of Northern Latitude (LAT_N) and (c, d) are the respective minimum and maximum 
+values of Western Longitude (LONG_W) in STATION.
+Query the Euclidean Distance between points P1 and P2 and format your answer to display 4 decimal digits. */
+SELECT ROUND(SQRT(POWER((MAX(LAT_N)-MIN(LAT_N)), 2) + 
+                  POWER((MAX(LONG_W)-MIN(LONG_W)), 2)), 4)
+FROM STATION;
+
+/* A median is defined as a number separating the higher half of a data set from the lower half. 
+Query the median of the Northern Latitudes (LAT_N) from STATION and round your answer to  decimal places. */
+SET @t_cnt := (SELECT COUNT(*) FROM STATION);
+SET @rnum := 0;
+
+SELECT ROUND(AVG(m_val), 4) AS median
+FROM (SELECT LAT_N AS m_val, @rnum := @rnum + 1 AS r_num
+     FROM STATION
+     ORDER BY LAT_N) AS ordered
+WHERE r_num IN (FLOOR(@t_cnt/2) + 1, CEIL(@t_cnt/2));
+-- Every Derived table must have its own alias
+
+/*
+You did such a great job helping Julia with her last coding contest challenge that she wants you to work on this one, too!
+
+The total score of a hacker is the sum of their maximum scores for all of the challenges. 
+Write a query to print the hacker_id, name, and total score of the hackers ordered by the descending score. 
+If more than one hacker achieved the same total score, then sort the result by ascending hacker_id. 
+Exclude all hackers with a total score of 0 from your result.
+
+The following tables contain contest data:
+
+Hackers: The hacker_id is the id of the hacker, and name is the name of the hacker.
+
+Submissions: The submission_id is the id of the submission, hacker_id is the id of the hacker who made the submission, 
+challenge_id is the id of the challenge for which the submission belongs to, and score is the score of the submission.
+*/
+SELECT h.hacker_id, h.name, SUM(ms.max_s) as t_score
+FROM Hackers AS h JOIN 
+(SELECT hacker_id, challenge_id, MAX(score) AS max_s
+FROM Submissions
+
+GROUP BY hacker_id, challenge_id)
+As ms ON h.hacker_id = ms.hacker_id
+GROUP BY h.hacker_id, h.name
+HAVING SUM(ms.max_s) > 0
+ORDER BY t_score DESC, h.hacker_id ASC;
+
+-- Using CTE
+WITH m_scores AS(
+SELECT hacker_id, challenge_id, MAX(score) AS max_s
+FROM Submissions
+GROUP BY hacker_id, challenge_id)
+
+SELECT h.hacker_id, h.name, SUM(ms.max_s) as t_score
+FROM Hackers AS h JOIN 
+/*(SELECT hacker_id, challenge_id, MAX(score) AS max_s
+FROM Submissions
+GROUP BY hacker_id, challenge_id)*/
+m_score As ms ON h.hacker_id = ms.hacker_id
+GROUP BY h.hacker_id, h.name
+HAVING SUM(ms.max_s) > 0
+ORDER BY t_score DESC, h.hacker_id ASC;

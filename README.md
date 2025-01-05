@@ -61,8 +61,8 @@ Implemented a Python-based deep learning model, fine-tuning hyperparameters for 
 
 
 ## 🤝 **Let’s Connect!**  
-- **LinkedIn:** [Your LinkedIn Profile](https://www.linkedin.com/in/username)  
-- **GitHub:** [Your GitHub Profile](https://github.com/username)  
+- **LinkedIn:** [https://www.linkedin.com/in/nikhil-arora-6837501a4/](https://www.linkedin.com/in/nikhil-arora-6837501a4/)  
+- **GitHub:** [https://github.com/nikhil-hs27/Projects](https://github.com/nikhil-hs27/Projects)  
 - **Email:** nikhil.wm27@gmail.com  
 
 ---

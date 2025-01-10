@@ -1,6 +1,8 @@
 ## Overview
 ```
-Note: These whole projects/tests are done by self, without any supervision. There is a limited access to the data, so strategies, may perform better or worse in live markets. Trading entails 100% risk to the capital, so consider personal limitations while taking action in live markets.
+Note: These whole projects/tests are done by self, without any supervision. 
+There is a limited access to the data, so strategies, may perform better or worse in live markets. 
+Trading entails 100% risk to the capital, so consider personal limitations while taking action in live markets.
 ```
 The goal is to test various strategies on widely available historical stock data. Each strategy can be further optimized, with personal bias and changing the input variables.
 

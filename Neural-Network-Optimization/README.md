@@ -23,6 +23,10 @@ pip install <module>
 Also, for quick execution, please decrease `epochs`. The current setting for `epochs` parameter is set to 10, which takes execution time per model to be 10-20 mins.
 
 ## Contact
-Thank you for dropping by, for any queries please feel to contact on LinkedIn or by email
+Thank you for dropping by, for any queries please feel free to contact on LinkedIn or by email
 
 [LinkedIn](https://www.linkedin.com/in/nikhil-arora-6837501a4/) | [Email](nikhil.wm27@gmail.com)
+
+Please have a look at my other Projects:
+
+[GitHub](https://github.com/nikhil-hs27/Projects)

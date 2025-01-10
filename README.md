@@ -14,35 +14,46 @@ Welcome to my GitHub profile, where I showcase my journey in machine learning, d
 
 ## 📌 **Highlighted Projects**  
 
-### 🚀 Neural Network Optimization
+### 🚀 [Neural Network Optimization](https://github.com/nikhil-hs27/Projects/tree/b294763bc32fe5540c063e1f58dc4805735b191a/Neural-Network-Optimization)
 Optimized a neural network classifier by fine-tuning hidden layers, neurons, learning rates, and iterations using TensorFlow and PyTorch.  
 - **Skills Used:** Python, TensorFlow, Keras, Hyperparameter Tuning  
 - **Key Achievements:** Achieved ~92% accuracy on a custom dataset using advanced preprocessing techniques.  
 
-### 💬 Text Classification & Chatbot Development
+### 💬 [Text Classification & Chatbot Development](https://github.com/nikhil-hs27/Projects/tree/b294763bc32fe5540c063e1f58dc4805735b191a/Text-Classification-and-Chatbot-Development)
 Built a text classification model using a Naïve Bayes algorithm, Logistic Regression, MLP Classifier and an Eliza-style chatbot leveraging bigram language model (LLM) techniques.  
 - **Skills Used:** Python, NLP, Regular Expressions, Bigrams, LLMs  
 - **Key Achievements:** Developed an author attribution system, Sentiment Classifier with ~77% Accuracy.  
 
-### 📈 Quantitative Finance Strategy: 3-Day Price Change Backtest
+### 📈 [Quantitative Finance Strategy: 3-Day Price Change Strategy](https://github.com/nikhil-hs27/Projects/tree/b294763bc32fe5540c063e1f58dc4805735b191a/Quantitative-Finance)
 Developed and backtested a quantitative trading strategy based on a 3-day consecutive price movement, targeting short trades with specified profit and stop-loss limits.
 
 - **Brief Strategy Description:**
-    - Enter a short trade after observing three consecutive positive price days. Target a profit/loss of ±0.5% from the entry price.
+    - Enter a short trade after observing three consecutive moves. Target a profit/loss of 1% from the entry price.
     - Backtesting Implementation:
         Analyzed historical market data for the strategy's viability.
-Used Python for data preprocessing, strategy simulation, and performance evaluation.
 - **Skills Used:** Python, Pandas, NumPy, Matplotlib, Backtesting Libraries
 - **Key Achievements:**
     - Demonstrated a ~60% success rate over a 2-year historical data, but returns limited to 5-15% depending on the scrip token.
     - Optimized trade entry parameters to balance risk and reward effectively.
+
+### 📈 [Quantitative Finance Strategy: Statistical Arbitrage](https://github.com/nikhil-hs27/Projects/tree/b294763bc32fe5540c063e1f58dc4805735b191a/Quantitative-Finance)
+
+Develop a trading strategy based on spread between two stocks. Entry and Exit is defined based on mean and standard deviation of the Spread.
+
+- **Description**:
+    - Entry is taken when spread is at standard deviation away from spread mean, and exit when at mean spread.
+    - Backtesting:
+        - This strategy is back tested on 1-day historical interval data.
+- **Skills Used:** Python, Pandas, NumPy, Matplotlib, Backtesting Libraries
+- **Key Achievements:**
+    - Demonstrated cummulative returns of ~24.6%, when tested on "MSFT" and "AAPL".
 
 ### 📊 Scalable Genomics Database Implementation
 Developed a MongoDB-based scalable database to store and query large genomics datasets, integrating APIs for agricultural research.  
 - **Skills Used:** MongoDB, Python, REST APIs, Data Engineering  
 - **Key Achievements:** Enhanced data query efficiency for VCF files by 60%.  
 
-### 🖥️ Deep Learning Classifier Tuning
+### 🖥️ [Deep Learning Classifier Tuning](https://github.com/nikhil-hs27/Projects/tree/b294763bc32fe5540c063e1f58dc4805735b191a/Deep-Learning-Classifier-Tuning)
 Implemented a Python-based deep learning model, fine-tuning hyperparameters for optimal performance.  
 - **Skills Used:** PyTorch, Data Augmentation, Cost Matrix Evaluation  
 - **Key Achievements:** Improved model performance by 30% using advanced optimization techniques.  

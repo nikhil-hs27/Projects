@@ -17,6 +17,8 @@ Tasks covered in this project include:
 
 The best way to see the tasks in action is to clone the repository and run in R markdown supported IDE.
 
+Alternatively, knitted pdf-format file 'Data-Exploration-Correlation-using-R.pdf` is included.
+
 ## Contact
 Thank you for dropping by, for any queries please feel free to contact on LinkedIn or by email
 

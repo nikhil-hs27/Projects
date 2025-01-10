@@ -19,8 +19,6 @@ dat_T1 <- read.csv("Studentmarks.csv", header = TRUE)
 -  Inspecting the Dataset
 
 ```{r}
-head(dat_T1)
-str(dat_T1)
 dim(dat_T1)
 
 #Checking for NAs
@@ -38,11 +36,9 @@ Using floor() as the age is supposed to be in years.
 ```{r}
 # Used floor() as we need to round down to get age in absolute years
 age1 <- floor(as.numeric(difftime(Sys.Date(), as.Date(dat_T1$dob, format = "%d/%m/%Y")))/365)
-head(age1)
 
 # Binding age1 as a column to the dataset
 dat_T1 <- cbind(dat_T1, age1)
-head(dat_T1)
 ```
 
 - Splitting the "dob" column into month and year columns
@@ -50,25 +46,21 @@ head(dat_T1)
 ```{r}
 # Converting the dob column to the date data type
 dat_T1$dob <- as.Date(dat_T1$dob, format = "%d/%m/%Y")
-str(dat_T1)
 
 # Extracting month and year column from dob
 dat_T1 <- separate(dat_T1, dob, c("Year", "Month"))
-head(dat_T1)
 ```
 
 - Calculating age2 and including it as a column in dataframe
 
 ```{r}
 dat_T1$age2 <- as.numeric(format(Sys.Date(), "%Y"))-as.numeric(dat_T1$Year)
-head(dat_T1)
 ```
 
 - Using gather() function to collect marks in a single column
 
 ```{r}
 dat_T1.2 <- gather(dat_T1, "M_year", "Marks", 5:7)
-head(dat_T1.2)
 ```
 
 - Plotting "Studentname" vs "Marks" using "Year" as color
@@ -130,8 +122,6 @@ dat_T2 <- read.csv("Movies.csv", header = TRUE)
 - Inspecting the Dataset
 
 ```{r}
-head(dat_T2)
-str(dat_T2)
 dim(dat_T2)
 
 # Checking for duplicated records
@@ -139,7 +129,6 @@ any(duplicated(dat_T2)) #Returns TRUE
 
 # Removing duplicated records
 dat_T2 <- unique(dat_T2)
-dim(dat_T2)
 ```
 
 - Replacing all missing values ("") with NA so that is.na() function works on all the columns irrespective of the data type
@@ -226,7 +215,6 @@ dat_T2 <- dat_T2 %>%
   mutate(Profit_Thousands = round(Profit/1000, 0)) %>%
   select(-c(Gross, Budget, Profit))
 
-head(dat_T2)
 ```
 
 - Checking for Outliers: using boxplot
